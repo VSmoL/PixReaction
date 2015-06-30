@@ -8,8 +8,9 @@ public class MakeAnswers : MonoBehaviour {
     public CheckAnswer chkAns;
     public ChangeEnemyColors cEnemyColors;
 	public int answerCnt = 10;
+	public static int IntAnswerId;
 
-    void Start() {
+    public void MakeAnswerList() {
         int randomNumber;
         List<CorrectAnswerList> corAL = new List<CorrectAnswerList>();
 
@@ -23,4 +24,9 @@ public class MakeAnswers : MonoBehaviour {
         chkAns.getAnswerList(corAL);
         //chkAns.moveCurrentAnswerPos();
     }
+
+	public void MakeReactionAnswer(){
+		IntAnswerId = Random.Range(0, 2);
+		cEnemyColors.changeReactionColor(IntAnswerId);
+	}
 }
