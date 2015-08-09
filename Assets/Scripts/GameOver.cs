@@ -3,43 +3,55 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class GameOver : MonoBehaviour {
-
-	public Button leftBtn;
-	public Button rightBtn;
-
+	
 	public GameObject AnswerObject;
 	public SpriteRenderer background;
+	public GameObject continueBtn;
+	string difficultName;
 
 	public void GameOverSaveDataTimed(){
+
+		if(ChangeDifficult.difficultNumber == 1){
+			difficultName = "easy";
+		}
+		else if(ChangeDifficult.difficultNumber == 2){
+			difficultName = "medium";
+		}
+		else if(ChangeDifficult.difficultNumber == 3){
+			difficultName = "hard";
+		}
+
 		if(GameStart.GameOn){
-			if(WriteTimeLeft.totalTime < PlayerPrefs.GetFloat("PlayerTopTimed",99999.99f)){
+			if(WriteTimeLeft.totalTime < PlayerPrefs.GetFloat("PlayerTopTimed"+difficultName,99999.99f)){
 				GameStart.GameOn = false;
-				PlayerPrefs.SetFloat("PlayerTopTimed", WriteTimeLeft.totalTime);
+				PlayerPrefs.SetFloat("PlayerTopTimed"+difficultName, WriteTimeLeft.totalTime);
 			}
 		}
 		GameStart.GameOn = false;
-		StartCoroutine (restartGame ());
+		continueBtn.SetActive (true);
 	}
 
 	public void GameOverSaveDataReaction(){
-		if(CheckAnswer.answerNumber > PlayerPrefs.GetInt ("PlayerTopReaction")){
-			PlayerPrefs.SetInt("PlayerTopReaction", CheckAnswer.answerNumber);
+
+		if(ChangeDifficult.difficultNumber == 1){
+			difficultName = "easy";
+		}
+		else if(ChangeDifficult.difficultNumber == 2){
+			difficultName = "medium";
+		}
+		else if(ChangeDifficult.difficultNumber == 3){
+			difficultName = "hard";
+		}
+
+		if(CheckAnswer.answerNumber > PlayerPrefs.GetInt ("PlayerTopReaction"+difficultName)){
+
+			PlayerPrefs.SetInt("PlayerTopReaction"+difficultName, CheckAnswer.answerNumber);
 		}
 		GameStart.GameOn = false;
-		StartCoroutine (restartGame ());
+		continueBtn.SetActive (true);
 	}
 
-	IEnumerator restartGame(){
-		yield return new WaitForSeconds(3);
+	public void restartGame(){
 		Application.LoadLevel ("MainMenu");
 	}
-
-//	else if (GameStart.GameModeTimed){
-//		if(!WriteTimeLeft.GameOver){
-//			if(WriteTimeLeft.totalTime < PlayerPrefs.GetFloat("PlayerTopTimed",99999.99f)){
-//				WriteTimeLeft.GameOver = true;
-//				PlayerPrefs.SetFloat("PlayerTopTimed", WriteTimeLeft.totalTime);
-//			}
-//		}
-//	}
 }

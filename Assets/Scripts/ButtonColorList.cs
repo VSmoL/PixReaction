@@ -20,6 +20,7 @@ public class ButtonColorList : MonoBehaviour {
 		int colorCount = 0;
 		foreach (Transform child in transform) {
 			child.gameObject.GetComponent<Image>().color = buttonsColors[colorCount];
+			child.gameObject.GetComponent<ColorId>().ColorNumber = colorCount;
 			colorCount++;
 		}
 	}
