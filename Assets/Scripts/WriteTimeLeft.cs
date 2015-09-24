@@ -13,6 +13,7 @@ public class WriteTimeLeft : MonoBehaviour {
 
 	public FlashBackground FB;
 	public GameOver GO;
+	public StartCountdown SC;
 
 	public void Start(){
 		timeLeft = 3.0f;
@@ -31,6 +32,7 @@ public class WriteTimeLeft : MonoBehaviour {
 						timeLeftText.text = 0.ToString("f2");
 						WriteTimeLeft.GameOver = true;
 						FB.wrongAnswer();
+						SC.playLoseSound();
 						GO.GameOverSaveDataReaction();
 					}
 				}

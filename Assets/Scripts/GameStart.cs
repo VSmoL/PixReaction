@@ -24,6 +24,7 @@ public class GameStart : MonoBehaviour {
 	void resetGame(){
 		CheckAnswer.answerNumber = 0;
 		StartCountdown.yieldTime = 1;
+		StartCountdown.pitchSpeed = 1;
 		WriteAnswerLeft.answers = 0;
 		GameOn = true;
 	}

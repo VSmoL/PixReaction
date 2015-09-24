@@ -35,6 +35,7 @@ public class CheckAnswer : MonoBehaviour {
 				GameStart.GameOn = false;
 				flashBg.wrongAnswer ();
 				GO.GameOverSaveDataReaction();
+				SCD.playLoseSound();
 			}
 		} else if (GameStart.GameModeTimed) {
 			if (playerAnswer == corAL [answerNumber].answerId) {
@@ -44,6 +45,7 @@ public class CheckAnswer : MonoBehaviour {
 				if (answerNumber >= corAL.Count) {
 					GO.GameOverSaveDataTimed();
 					flashBg.lastRightAnswer();
+					SCD.playWinSound();
 					WriteTimeLeft.GameOver = true;
 				}
 				else{
@@ -54,6 +56,7 @@ public class CheckAnswer : MonoBehaviour {
 				GameStart.GameOn = false;
 				GO.GameOverSaveDataTimed();
 				flashBg.wrongAnswer ();
+				SCD.playLoseSound();
 			}
 		}
     }

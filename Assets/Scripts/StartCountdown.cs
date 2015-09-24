@@ -9,6 +9,7 @@ public class StartCountdown : MonoBehaviour {
 	public GameObject answerObject;
 	public GameObject answerCircle;
 	public static float yieldTime = 1;
+	public static float pitchSpeed = 1;
 
 	public Button leftBtn;
 	public Button leftBtn1;
@@ -24,6 +25,7 @@ public class StartCountdown : MonoBehaviour {
 	public GameObject rightButton1;
 	public GameObject rightButton2;
 
+	public GameObject countdownSoundEffect;
 
 	void Start(){
 		checkDifficult ();
@@ -45,11 +47,22 @@ public class StartCountdown : MonoBehaviour {
 		rightBtn2.GetComponent<Button>().interactable = false;
 
 		startCD.text = "3";
+		countdownSoundEffect.GetComponent<AudioSource> ().clip = countdownSoundEffect.GetComponent<SoundEffectList> ().soundEffects [0];
+		countdownSoundEffect.GetComponent<AudioSource> ().Play ();
 		yield return new WaitForSeconds(1);
+
 		startCD.text = "2";
+		countdownSoundEffect.GetComponent<AudioSource> ().clip = countdownSoundEffect.GetComponent<SoundEffectList> ().soundEffects [0];
+		countdownSoundEffect.GetComponent<AudioSource> ().Play ();
 		yield return new WaitForSeconds(1);
+
 		startCD.text = "1";
+		countdownSoundEffect.GetComponent<AudioSource> ().clip = countdownSoundEffect.GetComponent<SoundEffectList> ().soundEffects [0];
+		countdownSoundEffect.GetComponent<AudioSource> ().Play ();
 		yield return new WaitForSeconds(1);
+
+		countdownSoundEffect.GetComponent<AudioSource> ().clip = countdownSoundEffect.GetComponent<SoundEffectList> ().soundEffects [1];
+		countdownSoundEffect.GetComponent<AudioSource> ().Play ();
 
 		transform.gameObject.SetActive (false);
 		mAnswers.getButtonCntTimed ();
@@ -72,13 +85,24 @@ public class StartCountdown : MonoBehaviour {
 		rightBtn2.GetComponent<Button>().interactable = false;
 		
 		startCD.text = "3";
+		countdownSoundEffect.GetComponent<AudioSource> ().clip = countdownSoundEffect.GetComponent<SoundEffectList> ().soundEffects [0];
+		countdownSoundEffect.GetComponent<AudioSource> ().pitch = pitchSpeed;
+		countdownSoundEffect.GetComponent<AudioSource> ().Play ();
 		yield return new WaitForSeconds(yieldTime);
+
 		startCD.text = "2";
+		countdownSoundEffect.GetComponent<AudioSource> ().Play ();
 		yield return new WaitForSeconds(yieldTime);
+
 		startCD.text = "1";
+		countdownSoundEffect.GetComponent<AudioSource> ().Play ();
 		yield return new WaitForSeconds(yieldTime);
-		
+
+		countdownSoundEffect.GetComponent<AudioSource> ().clip = countdownSoundEffect.GetComponent<SoundEffectList> ().soundEffects [1];
+		countdownSoundEffect.GetComponent<AudioSource> ().Play ();
+
 		yieldTime = yieldTime * 0.95f;
+		pitchSpeed = pitchSpeed * 1.05f;
 		
 		leftBtn.GetComponent<Button>().interactable = true;
 		leftBtn1.GetComponent<Button>().interactable = true;
@@ -108,13 +132,25 @@ public class StartCountdown : MonoBehaviour {
 		rightBtn2.GetComponent<Button>().interactable = false;
 
 		startCD.text = "3";
-		yield return new WaitForSeconds(yieldTime);
-		startCD.text = "2";
-		yield return new WaitForSeconds(yieldTime);
-		startCD.text = "1";
+		countdownSoundEffect.GetComponent<AudioSource> ().clip = countdownSoundEffect.GetComponent<SoundEffectList> ().soundEffects [0];
+		countdownSoundEffect.GetComponent<AudioSource> ().pitch = pitchSpeed;
+		countdownSoundEffect.GetComponent<AudioSource> ().Play ();
 		yield return new WaitForSeconds(yieldTime);
 
+		startCD.text = "2";
+		countdownSoundEffect.GetComponent<AudioSource> ().Play ();
+		yield return new WaitForSeconds(yieldTime);
+
+		startCD.text = "1";
+		countdownSoundEffect.GetComponent<AudioSource> ().Play ();
+		yield return new WaitForSeconds(yieldTime);
+
+		countdownSoundEffect.GetComponent<AudioSource> ().clip = countdownSoundEffect.GetComponent<SoundEffectList> ().soundEffects [1];
+		countdownSoundEffect.GetComponent<AudioSource> ().Play ();
+
+
 		yieldTime = yieldTime * 0.95f;
+		pitchSpeed = pitchSpeed * 1.05f;
 
 		leftBtn.GetComponent<Button>().interactable = true;
 		leftBtn1.GetComponent<Button>().interactable = true;
@@ -156,5 +192,16 @@ public class StartCountdown : MonoBehaviour {
 			rightButton1.SetActive(true);
 			rightButton2.SetActive(true);
 		}
+	}
+
+	public void playLoseSound(){
+		countdownSoundEffect.GetComponent<AudioSource> ().clip = countdownSoundEffect.GetComponent<SoundEffectList> ().soundEffects [2];
+		countdownSoundEffect.GetComponent<AudioSource> ().pitch = 1;
+		countdownSoundEffect.GetComponent<AudioSource> ().Play ();
+	}
+	public void playWinSound(){
+		countdownSoundEffect.GetComponent<AudioSource> ().clip = countdownSoundEffect.GetComponent<SoundEffectList> ().soundEffects [3];
+		countdownSoundEffect.GetComponent<AudioSource> ().pitch = 1;
+		countdownSoundEffect.GetComponent<AudioSource> ().Play ();
 	}
 }

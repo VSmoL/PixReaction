@@ -28,7 +28,7 @@ public class MakeAnswers : MonoBehaviour {
 		buttonCnt = 0;
 		foreach (Transform btnChild in btnList) {
 			foreach(Transform btnChildChild in btnChild){
-				if(btnChildChild.gameObject.tag == "Button"){
+				if(btnChildChild.gameObject.tag == "Button" && btnChildChild.gameObject.activeSelf){
 					buttonCnt += 1;
 				}
 			}
