@@ -17,8 +17,6 @@ public class ChangeDifficult : MonoBehaviour {
 
 	void Start(){
 
-		PlayerPrefs.DeleteAll ();
-
 		difficultNumber = PlayerPrefs.GetInt ("DifficultInt", 1);
 		Debug.Log ("vaikeus" + difficultNumber);
 
