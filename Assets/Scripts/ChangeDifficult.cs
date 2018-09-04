@@ -18,7 +18,6 @@ public class ChangeDifficult : MonoBehaviour {
 	void Start(){
 
 		difficultNumber = PlayerPrefs.GetInt ("DifficultInt", 1);
-		Debug.Log ("vaikeus" + difficultNumber);
 
 		if (difficultNumber == 1) {
 			WD.DifficultWriteText (difficultNumber);

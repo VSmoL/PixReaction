@@ -7,7 +7,6 @@ public class GameOver : MonoBehaviour {
 	public GameObject AnswerObject;
 	public SpriteRenderer background;
 	public GameObject continueBtn;
-	public GoogleAdVideo GAV;
 	string difficultName;
 	static int retryCount = 2;
 
@@ -55,10 +54,6 @@ public class GameOver : MonoBehaviour {
 
 	public void restartGame(){	
 		retryCount += 1;
-		Debug.Log(retryCount);
-		if(retryCount % 3 == 0){
-			GAV.ShowVideo ();
-		}
 		Application.LoadLevel ("MainMenu");
 	}
 }
